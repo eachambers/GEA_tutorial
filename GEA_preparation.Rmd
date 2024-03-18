@@ -1,0 +1,85 @@
+---
+title: 'GEA: preparation'
+author: "Anne Chambers"
+date: "2024-03-18"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Installation instructions
+
+The main package we'll be working with is [algatr](https://github.com/TheWangLab/algatr). You can install it like so:
+
+```{r algatr}
+# Install devtools to install GitHub packages:
+install.packages("devtools")
+library(devtools)
+
+# Now, install algatr:
+devtools::install_github("TheWangLab/algatr")
+library(algatr)
+```
+
+Today we'll be using two methods: RDA and LFMM. You'll also want to install relevant packages that are used within algatr to run each of these methods. You can do this like so:
+
+```{r gea packages}
+algatr::rda_packages()
+algatr::lfmm_packages()
+```
+
+It's also helpful to have some familiarity with the tidyverse, as we'll be using this package to process (and visualize, using ggplot) our data:
+
+```{r tidyverse}
+install.packages("tidyverse")
+library(tidyverse)
+```
+
+## Example datasets
+
+For our in-class exercises, we'll be using a RADseq dataset with western fence lizards sampled across the southwestern U.S. (from [Bouzid et al. 2022](https://onlinelibrary.wiley.com/doi/abs/10.1111/mec.15836)). When you run the following line, you should see four objects loaded into your environment: `liz_vcf`, `liz_gendist`, `liz_coords`, and `CA_env`. We'll go over what each of these is in class.
+
+```{r bouzid}
+algatr::load_algatr_example()
+```
+
+We'll also be using a whole genome re-sequencing dataset of willow leaf beetles from California (from [Keller et al. 2023](https://royalsocietypublishing.org/doi/10.1098/rspb.2023.0630). You'll be downloading the three required files directly from GitHub like so:
+
+1.  Head to this URL.
+2.  fff
+
+## (Relatively) unimportant details
+
+Some amount of data processing needed to happen to the datasets we're using today.
+
+For the Bouzid et al. (2022) lizard dataset, you can take a look at the code provided within the algatr package [here](https://github.com/TheWangLab/algatr/blob/main/data-raw/DATASET.R) to see how we processed it for the package.
+
+For the Keller et al. (2023) beetle dataset, I downloaded the authors' raw data files (available [here](https://figshare.com/articles/dataset/Keller_etal_ProcRoySocB/22272025/4)), saved all within a folder called "Kelleretal2023_data" and then did the following:
+
+```{keller dataset}
+### Genetic data processing
+# Dosage matrices are provided as separate csvs for each chromosome
+files <- list.files(path = "./Kelleretal2023_data/Data_S2", pattern = "allele_counts", full.names = TRUE)
+filenos <- 1:length(files)
+ac_all <-
+  filenos %>% 
+  lapply(function(x) {
+    dat <- read.csv(files[x], header = TRUE)
+  }) %>% 
+  bind_rows() %>% 
+  column_to_rownames(var = "X")
+# Transpose
+ac_all <- as.data.frame(t(ac_all))
+write_tsv(ac_all, col_names = TRUE, file = "Keller_gendata.txt")
+
+### Environmental data processing
+all_env <- read_csv("Kelleretal2023_data/Data_S3/NicheMapR_simulated_data.csv")
+sites <- read_csv("Kelleretal2023_data/Data_S3/population_metadata.csv")
+samps <- read_csv("Kelleretal2023_data/Data_S3/sample_populations.csv")
+coords <- left_join(samps, sites %>% dplyr::rename(population = population_name) %>% dplyr::select(mid_latitude, mid_longitude, population))
+write_tsv(coords, file = "Keller_coords.txt", col_names = TRUE)
+env_dat <- all_env %>% dplyr::select(-c(`...1`, "n"))
+write_tsv(env_dat, file = "Keller_envdata.txt", col_names = TRUE)
+```
