@@ -2,7 +2,7 @@
 
 ## Package installation and dataset downloads
 
-There are a number of R packages required for this tutorial, and we'll be using two example datasets for our exercises. Refer to the GEA_preparation file for all installation and download requirements.
+There are a number of R packages required for this tutorial, and we'll be using two example datasets for our exercises. Refer to the [GEA_preparation file](https://github.com/eachambers/GEA_tutorial/blob/main/GEA_preparation.Rmd) for all installation and download requirements.
 
 ## Exercises
 
