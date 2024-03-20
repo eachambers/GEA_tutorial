@@ -6,7 +6,9 @@ There are a number of R packages required for this tutorial, and we'll be using 
 
 ## Exercises
 
-We'll be doing two separate exercises (with each of our example datasets).
+We'll be doing two separate exercises (with each of our example datasets):
+- [Exercise 1](https://github.com/eachambers/GEA_tutorial/blob/main/Exercises/Exercise1.R) runs RDA on *Sceloporus* lizards
+- [Exercise 2](https://github.com/eachambers/GEA_tutorial/blob/main/Exercises/Exercise2.R) runs LFMM on *Chrysomela* willow leaf beetles
 
 ## Helpful GEA resources
 
