@@ -58,7 +58,7 @@ For the Bouzid et al. (2022) lizard dataset, you can take a look at the code pro
 
 For the Keller et al. (2023) beetle dataset, I downloaded the authors' raw data files (available [here](https://figshare.com/articles/dataset/Keller_etal_ProcRoySocB/22272025/4)), saved all within a folder called "Kelleretal2023_data" and then did the following:
 
-```{keller dataset}
+```
 ### Genetic data processing
 # Dosage matrices are provided as separate csvs for each chromosome
 files <- list.files(path = "./Kelleretal2023_data/Data_S2", pattern = "allele_counts", full.names = TRUE)
@@ -71,7 +71,8 @@ ac_all <-
   bind_rows() %>% 
   column_to_rownames(var = "X")
 # Transpose
-ac_all <- as.data.frame(t(ac_all))
+ac_all <- as.data.frame(t(ac_all)) %>% 
+  tibble::rownames_to_column(var = "sample")
 write_tsv(ac_all, col_names = TRUE, file = "Keller_gendata.txt")
 
 ### Environmental data processing
