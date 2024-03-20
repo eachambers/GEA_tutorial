@@ -47,8 +47,8 @@ algatr::load_algatr_example()
 
 We'll also be using a whole genome re-sequencing dataset of willow leaf beetles from California (from [Keller et al. 2023](https://royalsocietypublishing.org/doi/10.1098/rspb.2023.0630). You'll be downloading the three required files directly from GitHub like so:
 
-1.  Head to this URL.
-2.  fff
+1.  Head to the Data folder within the class GitHub page [here](https://github.com/eachambers/GEA_tutorial/tree/main/Data).
+2.  All three datasets related to Keller et al. (2023) are within this Data folder. For **each file**, click on the file, then click on the download arrow to the top right of the screen (two icons to the right from Raw).
 
 ## (Relatively) unimportant details
 
