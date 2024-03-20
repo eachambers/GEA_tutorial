@@ -97,9 +97,6 @@ env <- data.frame(env)
 # using the `rda_plot()` function with `manhattan = TRUE` and `rdaplot = FALSE`:
 ###### * YOUR CODE HERE * ######
 
-# Now do the same, but instead for your partial RDA using the Z-scores method:
-###### * YOUR CODE HERE * ######
-
 # There are some updates that need to be made to algatr; because of this,
 # we're not actually able to see the RDA biplot using the `rda_plot()` function
 # as we would normally. To get around this, run the following to load this function 
