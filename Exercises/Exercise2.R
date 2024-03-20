@@ -19,13 +19,6 @@ library(vegan)
 # there are column names in these datasets.
 ###### * YOUR CODE HERE * ######
 
-# For any landscape genomics analysis, we want to ensure that individuals are ordered
-# in the exact same way across all our input datasets. An easy way to do this is using
-# the `all.equal()` function which has the syntax `all.equal(df1$col, df2$col)`.
-# Check that the samples in the genetic data are in the same order as the samples in
-# the coordinate data.
-###### * YOUR CODE HERE * ######
-
 # You'll notice our envdata only has one row for each population (which makes sense,
 # as these would be duplicated). For any GEA analysis, we need all rows to be consistent;
 # there is no check for sample IDs. I find the easiest way to do this is with a `left_join()`.
@@ -39,6 +32,13 @@ library(vegan)
 
 # Now, make the sample column within the genetic data object into rownames (you could
 # use the `rownames_to_column()` function). Now it is really a dosage matrix.
+###### * YOUR CODE HERE * ######
+
+# For any landscape genomics analysis, we want to ensure that individuals are ordered
+# in the exact same way across all our input datasets. An easy way to do this is using
+# the `all.equal()` function which has the syntax `all.equal(df1$col, df2$col)`.
+# Check that the samples in the genetic data are in the same order as the samples in
+# the coordinate data.
 ###### * YOUR CODE HERE * ######
 
 
@@ -79,8 +79,10 @@ library(vegan)
 # environmental variables?
 ###### * YOUR CODE/ANSWER HERE * ######
 
-# *BONUS*: which environmental variable shows (HINT: you could use the `lfmm_table()`
-# function for this)
+# *BONUS*: which environmental variable shows the strongest association
+# in your LFMM model, i.e., has the largest B value? (HINT: you could use 
+# the `lfmm_table()` function for this and specify `top = TRUE` and 
+# `order = TRUE`)
 ###### * YOUR CODE HERE * ######
 
 
