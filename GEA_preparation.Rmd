@@ -80,7 +80,13 @@ all_env <- read_csv("Kelleretal2023_data/Data_S3/NicheMapR_simulated_data.csv")
 sites <- read_csv("Kelleretal2023_data/Data_S3/population_metadata.csv")
 samps <- read_csv("Kelleretal2023_data/Data_S3/sample_populations.csv")
 coords <- left_join(samps, sites %>% dplyr::rename(population = population_name) %>% dplyr::select(mid_latitude, mid_longitude, population))
-write_tsv(coords, file = "Keller_coords.txt", col_names = TRUE)
 env_dat <- all_env %>% dplyr::select(-c(`...1`, "n"))
 write_tsv(env_dat, file = "Keller_envdata.txt", col_names = TRUE)
+
+### Order the coordinates the same as gen data for ease
+names <- rownames(gen) %>% 
+  as.data.frame() %>% 
+  rename(sample = ".")
+coords <- left_join(names, coords)
+write_tsv(coords, file = "Keller_coords.txt", col_names = TRUE)
 ```
