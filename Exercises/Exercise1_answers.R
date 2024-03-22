@@ -55,8 +55,8 @@ env <- data.frame(env)
 
 # (4) Run simple RDA ------------------------------------------------------
 
-# Run a simple RDA with model selection (i.e., `model = "best"`). Use a Pin = 0.05
-# and do 1000 R2 permutations.
+# Run a simple RDA with model selection (i.e., `model = "best"`) using the `rda_run()`
+# function. Use a Pin = 0.05 and do 1000 R2 permutations.
 sRDA <- rda_run(gen, env,
                 model = "best",
                 Pin = 0.05,
@@ -69,7 +69,7 @@ sRDA$anova # only PCs 2 and 3 are sig
 
 # (5) Run partial RDA -----------------------------------------------------
 
-# Let's now run a partial RDA with model seletion (`model = "best"`), controlling 
+# Let's now run a partial RDA with model selection (`model = "best"`), controlling 
 # for geographic distance (`"correctGEO"`).
 pRDA <- rda_run(gen, env, liz_coords, 
                 model = "best",
@@ -87,8 +87,9 @@ pRDA$anova # only PC 3 is significant now
 
 # (6) Get outliers --------------------------------------------------------
 
-# Let's use the p-value method to pull out outliers from your simple RDA results. Do so
-# using the `rda_getoutliers()` function, specifying `"p"` for `outlier_method`.
+# Let's use the p-value method (rdadapt) to pull out outliers from your simple 
+# RDA results. Do so using the `rda_getoutliers()` function, specifying `"p"` 
+# for `outlier_method`.
 rda_p <- rda_getoutliers(sRDA, outlier_method = "p")
 
 # Now do the same, but do the Z-scores outlier method (by specifying `"z"` for `outlier_method`).

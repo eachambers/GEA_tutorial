@@ -116,7 +116,7 @@ rda_ggtidy <- function(mod, rda_snps, axes) {
 
 # Now, run this (assuming `simplerda` is your simple RDA results object and
 # rda_sig_p is the object produced by getting p-value outliers for your simple RDA:
-tidy_list <- rda_ggtidy(sRDA, sig_p$rda_snps, axes = c(1, 2))
+tidy_list <- rda_ggtidy(simplerda, sig_p$rda_snps, axes = c(1, 2))
 TAB_snps <- tidy_list[["TAB_snps"]]
 TAB_var <- tidy_list[["TAB_var"]]
 
